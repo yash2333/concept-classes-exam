@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: concept-classes-exam
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: SESSION_SECRET
+        generateValue: true
