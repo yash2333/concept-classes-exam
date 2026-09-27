@@ -1,6 +1,17 @@
 from flask import render_template, request, redirect, url_for, session
 from library_data import get_library
 
+BOARD_SUBJECTS = [
+    ("Mathematics", "Algebra, geometry, trigonometry, mensuration, statistics and probability"),
+    ("Physics", "Numericals, definitions, laws, diagrams and application-based questions"),
+    ("Chemistry", "Equations, reactions, periodic properties, organic chemistry and numericals"),
+    ("Biology", "Diagrams, processes, terminology, reasoning and structured answers"),
+    ("History & Civics", "Dates, causes, effects, constitutional topics and structured explanations"),
+    ("Geography", "Maps, resources, climate, agriculture, industries and data interpretation"),
+    ("Computer Applications", "Java programming, arrays, strings, methods, inheritance and output questions"),
+    ("English Language", "Composition, letters, notice/email, comprehension and grammar")
+]
+
 def register_library(app):
     @app.route('/library')
     def library():
@@ -33,3 +44,9 @@ def register_library(app):
         if not match:
             return 'Chapter not found', 404
         return render_template('student/library_chapter.html', class_name=class_name, subject=subject, chapter=match[0], summary=match[1])
+
+    @app.route('/board-preparation')
+    def board_preparation():
+        if session.get('role') != 'student':
+            return redirect(url_for('login'))
+        return render_template('student/board_preparation.html', subjects=BOARD_SUBJECTS)
