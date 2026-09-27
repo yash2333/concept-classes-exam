@@ -1,1 +1,71 @@
-{% extends 'base.html' %}{% block content %}<h1>Student Dashboard</h1><div class="grid">{% for c in courses %}<div class="card"><h3>📚 {{c.name}}</h3><p>{{c.description}}</p></div>{% endfor %}</div><div class="card"><h2>Available Tests</h2>{% for t in tests %}<div class="row"><div><b>{{t.title}}</b><small>{{t.course or 'General'}} • {{t.duration_minutes}} minutes</small></div><a class="btn" href="{{url_for('take_test',test_id=t.id)}}">Start Test</a></div>{% else %}<p>No tests available.</p>{% endfor %}</div><div class="card"><h2>My Results</h2><table><tr><th>Test</th><th>Score</th><th>Date</th></tr>{% for r in results %}<tr><td>{{r.title}}</td><td>{{r.score}} / {{r.total}}</td><td>{{r.submitted_at}}</td></tr>{% else %}<tr><td colspan="3">No results.</td></tr>{% endfor %}</table></div>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Student Dashboard | Concept Classes{% endblock %}
+{% block content %}
+<section class="hero-panel">
+  <div>
+    <span class="eyebrow">STUDENT PORTAL</span>
+    <h1>Welcome, {{ user.get('name','Student') }} 👋</h1>
+    <p>Learn, practice, solve doubts and access your class resources from one place.</p>
+  </div>
+  <div class="hero-actions">
+    <a class="btn ai-btn" href="{{url_for('ai_solver')}}">🤖 Ask AI Solver</a>
+    <a class="btn secondary-btn" href="{{url_for('student_notes')}}">📚 Open Notes</a>
+  </div>
+</section>
+
+<div class="feature-grid">
+  <a class="feature-card ai-feature" href="{{url_for('ai_solver')}}">
+    <div class="feature-icon">🤖</div><div><h3>AI Doubt Solver</h3><p>Ask questions, upload a question image or document and get a clear explanation.</p></div>
+  </a>
+  <a class="feature-card" href="{{url_for('student_notes')}}">
+    <div class="feature-icon">📖</div><div><h3>My Notes</h3><p>Access teacher-uploaded notes, worksheets and study material.</p></div>
+  </a>
+  <a class="feature-card" href="#tests">
+    <div class="feature-icon">📝</div><div><h3>Examinations</h3><p>View available tests and start your assigned examination.</p></div>
+  </a>
+</div>
+
+{% if courses %}
+<div class="section-head"><div><span class="eyebrow">YOUR COURSES</span><h2>Learning Space</h2></div></div>
+<div class="grid">
+{% for c in courses %}
+  <div class="card"><h3>📚 {{c.name}}</h3><p>{{c.description or 'Course material and learning resources.'}}</p></div>
+{% endfor %}
+</div>
+{% endif %}
+
+<div class="card" id="tests">
+  <div class="section-head"><div><span class="eyebrow">EXAMINATION</span><h2>Available Tests</h2></div></div>
+  {% for t in tests %}
+  <div class="row">
+    <div><b>{{t.title}}</b><small>{{t.course or 'General'}} • {{t.duration_minutes}} minutes</small></div>
+    <a class="btn" href="{{url_for('take_test',test_id=t.id)}}">Start Test</a>
+  </div>
+  {% else %}<div class="empty-state">No tests available right now.</div>{% endfor %}
+</div>
+
+<div class="card">
+  <div class="section-head"><div><span class="eyebrow">STUDY MATERIAL</span><h2>Latest Notes</h2></div><a class="text-link" href="{{url_for('student_notes')}}">View all →</a></div>
+  <div class="mini-grid">
+  {% for n in notes %}
+    <a class="note-mini" href="{{url_for('view_note',note_id=n.id)}}" target="_blank"><span>📄</span><div><b>{{n.title}}</b><small>{{n.subject}}{% if n.class_name %} • Class {{n.class_name}}{% endif %}</small></div></a>
+  {% else %}<div class="empty-state">No notes have been uploaded yet.</div>{% endfor %}
+  </div>
+</div>
+
+<div class="card">
+  <div class="section-head"><div><span class="eyebrow">PERFORMANCE</span><h2>My Results</h2></div></div>
+  <div class="table-wrap"><table><tr><th>Test</th><th>Score</th><th>Date</th></tr>
+  {% for r in results %}<tr><td>{{r.title}}</td><td><strong>{{r.score}} / {{r.total}}</strong></td><td>{{r.submitted_at}}</td></tr>
+  {% else %}<tr><td colspan="3">No results yet.</td></tr>{% endfor %}</table></div>
+</div>
+
+{% if ai_history %}
+<div class="card">
+  <div class="section-head"><div><span class="eyebrow">AI ACTIVITY</span><h2>Recent Doubts</h2></div><a class="text-link" href="{{url_for('ai_solver')}}">Open Solver →</a></div>
+  {% for h in ai_history %}
+    <div class="history-row"><b>{{h.question[:120]}}{{'…' if h.question|length > 120 else ''}}</b><small>{{h.created_at}}</small></div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}
