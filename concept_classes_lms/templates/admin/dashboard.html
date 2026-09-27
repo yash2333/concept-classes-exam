@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h1>Admin Dashboard</h1><div class="card"><h2>Users</h2><table><tr><th>Name</th><th>Username</th><th>Role</th><th>Class</th><th>Status</th></tr>{% for u in users %}<tr><td>{{u.name}}</td><td>{{u.username}}</td><td>{{u.role}}</td><td>{{u.class_name or '-'}}</td><td>{{u.status}}</td></tr>{% endfor %}</table></div>{% endblock %}
