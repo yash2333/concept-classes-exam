@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Concept Classes Library | ICSE{% endblock %}
+{% block content %}
+<section class="hero-panel library-hero"><div><span class="eyebrow">CONCEPT CLASSES • ICSE LIBRARY</span><h1>📚 Learn the Concept, Master the Chapter</h1><p>Original Concept Classes notes designed for understanding, revision and exam practice.</p></div></section>
+<div class="library-tabs"><a class="btn {% if selected_class == '9' %}active-tab{% endif %}" href="{{url_for('library', class_name='9')}}">Class 9</a><a class="btn {% if selected_class == '10' %}active-tab{% endif %}" href="{{url_for('library', class_name='10')}}">Class 10</a></div>
+<div class="card filter-card"><form method="get" class="filter-form"><input type="hidden" name="class_name" value="{{selected_class}}"><input name="q" value="{{q}}" placeholder="Search subject or chapter..."><button class="btn">Search Library</button><a class="btn secondary-btn" href="{{url_for('library', class_name=selected_class)}}">Clear</a></form></div>
+{% for subject, chapters in subjects %}<section class="library-section"><div class="section-head"><div><span class="eyebrow">CLASS {{selected_class}}</span><h2>{{subject}}</h2></div><span class="library-count">{{chapters|length}} chapters</span></div><div class="library-grid">{% for chapter, summary in chapters %}<article class="library-card"><div class="chapter-number">{{loop.index}}</div><div class="library-card-body"><span class="note-badge">CONCEPT NOTES</span><h3>{{chapter}}</h3><p>{{summary}}</p><a class="text-link" href="{{url_for('library_chapter', class_name=selected_class, subject=subject, chapter=chapter)}}">Open chapter →</a></div></article>{% endfor %}</div></section>{% endfor %}
+{% if not subjects %}<div class="card empty-state">No chapter matched your search.</div>{% endif %}
+{% endblock %}
