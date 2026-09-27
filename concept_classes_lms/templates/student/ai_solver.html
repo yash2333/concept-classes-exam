@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}AI Solver | Concept Classes{% endblock %}
+{% block content %}
+<section class="ai-hero">
+<div class="ai-orb">🤖</div>
+<div><span class="eyebrow">CONCEPT CLASSES AI</span><h1>Ask. Understand. Solve.</h1><p>Your AI study partner for maths, science, English, coding, commerce and more.</p></div>
+</section>
+<div class="ai-layout">
+<main class="card solver-card">
+<form method="post" enctype="multipart/form-data">
+<label class="solver-label">What do you want to learn or solve?</label>
+<textarea class="solver-input" name="question" rows="7" placeholder="Example: Explain photosynthesis in simple words...&#10;&#10;Or paste a maths/programming question here.">{{question}}</textarea>
+<div class="upload-zone"><div><b>📎 Add a question image or document</b><small>PDF, DOC, DOCX, TXT, MD, JPG, JPEG, PNG</small></div><input type="file" name="attachment" accept=".pdf,.doc,.docx,.txt,.md,.jpg,.jpeg,.png"></div>
+<div class="solver-actions"><button class="btn ai-btn" type="submit">🤖 Solve with AI</button><span>Step-by-step explanations • Follow-up friendly</span></div>
+</form>
+{% if answer %}
+<section class="answer-box"><div class="answer-head"><span>✨ AI Explanation</span><span class="status-pill">Generated for you</span></div><div class="answer-content">{{answer|replace('\n','<br>')|safe}}</div></section>
+{% endif %}
+</main>
+<aside class="card history-card"><div class="section-head"><div><span class="eyebrow">YOUR ACTIVITY</span><h2>Recent Doubts</h2></div></div>
+{% for h in history %}<div class="history-item"><b>{{h.question[:100]}}{{'…' if h.question|length > 100 else ''}}</b><small>{{h.created_at}}</small></div>{% else %}<div class="empty-state">Your solved questions will appear here.</div>{% endfor %}
+</aside>
+</div>
+<div class="card capability-card"><h2>What can I ask?</h2><div class="capability-grid"><span>🧮 Maths & problem solving</span><span>🔬 Physics, Chemistry & Biology</span><span>💻 Programming & debugging</span><span>✍️ English & writing</span><span>🌍 SST & general academics</span><span>📄 Questions from documents</span><span>🖼️ Questions from images</span><span>💡 Concepts & exam revision</span></div></div>
+{% endblock %}
