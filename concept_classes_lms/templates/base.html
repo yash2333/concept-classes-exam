@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='learning.css')}}">
 </head>
 <body>
 <div class="app-bg"></div>
@@ -22,6 +23,12 @@
   <div class="nav-actions">
     {% if user.get('user_id') %}
       <a class="nav-link" href="{{url_for('dashboard')}}">Dashboard</a>
+      {% if user.get('role') == 'student' %}
+        <a class="nav-link" href="{{url_for('student_notes')}}">Notes</a>
+        <a class="nav-link nav-ai" href="{{url_for('ai_solver')}}">🤖 AI Solver</a>
+      {% elif user.get('role') == 'teacher' %}
+        <a class="nav-link" href="{{url_for('teacher_notes')}}">Notes</a>
+      {% endif %}
       <a class="nav-logout" href="{{url_for('logout')}}">Logout</a>
     {% endif %}
   </div>
