@@ -1,6 +1,102 @@
 {% extends 'base.html' %}
 {% block title %}{{chapter}} | Concept Classes{% endblock %}
 {% block content %}
-<section class="hero-panel"><div><span class="eyebrow">CLASS {{class_name}} • {{subject}}</span><h1>{{chapter}}</h1><p>Concept Classes Original Notes</p></div><a class="btn secondary-btn" href="{{url_for('library', class_name=class_name)}}">← Library</a></section>
-<div class="chapter-layout"><article class="card chapter-note"><span class="note-badge">ORIGINAL CONCEPT CLASSES CONTENT</span><h2>🎯 What you should understand</h2><p>{{summary}}</p><h2>🧠 Concept-first approach</h2><p>Start with the definition or core idea, connect it to a real example, then practise application. Do not memorise a result before understanding why it works.</p><div class="concept-box"><b>Exam Tip</b><p>Write answers in your own words, show the working where required, use correct units/terms, and check the final answer before submitting.</p></div><h2>✍️ Quick Revision</h2><ul><li>Define the key terms from this chapter.</li><li>Write the main rules/formulae from memory.</li><li>Solve one basic, one application and one exam-style question.</li><li>Use the AI Doubt Solver for concepts you still cannot explain.</li></ul></article><aside class="card chapter-side"><h3>Study Path</h3><div>1️⃣ Read concept</div><div>2️⃣ Make short notes</div><div>3️⃣ Practise</div><div>4️⃣ Attempt chapter test</div><div>5️⃣ Review mistakes</div><a class="btn ai-btn" href="{{url_for('ai_solver')}}">🤖 Ask AI Tutor</a></aside></div>
+<section class="hero-panel library-chapter-hero">
+ <div>
+  <span class="eyebrow">CONCEPT CLASSES • CLASS {{class_name}} • {{subject}}</span>
+  <h1>{{chapter}}</h1>
+  <p>Original Concept Classes notes — understand first, practise second, master the chapter.</p>
+ </div>
+ <a class="btn secondary-btn" href="{{url_for('library', class_name=class_name)}}">← Library</a>
+</section>
+
+<div class="chapter-layout">
+ <article class="card chapter-note">
+  <span class="note-badge">ORIGINAL CONCEPT CLASSES CONTENT</span>
+
+  <section class="study-block">
+   <h2>🎯 1. What You Need to Understand</h2>
+   <p>{{summary}}</p>
+   <p>Before memorising formulas or definitions, make sure you can explain the central idea of this chapter in your own words. Concept Classes focuses on the <strong>why</strong> behind the answer.</p>
+  </section>
+
+  <section class="study-block">
+   <h2>🧠 2. Concept Builder</h2>
+   <div class="concept-grid">
+    <div><b>Step 1 — Understand</b><p>Identify the main definition, rule, process or principle.</p></div>
+    <div><b>Step 2 — Connect</b><p>Connect the idea to an example, diagram, formula or real situation.</p></div>
+    <div><b>Step 3 — Apply</b><p>Use the concept in a question instead of only recalling it.</p></div>
+   </div>
+  </section>
+
+  <section class="study-block">
+   <h2>📌 3. Key Points for Revision</h2>
+   <ul class="revision-list">
+    <li>Know the important definitions and terminology.</li>
+    <li>Remember the rules, formulae, diagrams or processes relevant to the chapter.</li>
+    <li>Understand the difference between similar-looking concepts.</li>
+    <li>Practise at least one basic and one application-based question.</li>
+    <li>Review mistakes instead of only checking the final answer.</li>
+   </ul>
+  </section>
+
+  <section class="study-block">
+   <h2>💡 4. Worked-Example Method</h2>
+   <div class="example-box">
+    <b>Concept Classes Method</b>
+    <p><strong>Read → Identify → Apply → Check → Explain</strong></p>
+    <p>For numerical questions, write the given information, choose the correct formula or principle, substitute carefully, calculate, include units where required, and check whether the answer is reasonable.</p>
+   </div>
+  </section>
+
+  <section class="study-block">
+   <h2>⚠️ 5. Common Mistakes</h2>
+   <ul class="mistake-list">
+    <li>Learning an answer without understanding the concept behind it.</li>
+    <li>Skipping important steps in numerical or logical answers.</li>
+    <li>Using the wrong unit, symbol, term or formula.</li>
+    <li>Ignoring the wording of the question.</li>
+    <li>Not checking the final answer before submitting.</li>
+   </ul>
+  </section>
+
+  <section class="study-block">
+   <h2>✍️ 6. Quick Practice</h2>
+   <div class="practice-grid">
+    <div><span>01</span><b>Recall</b><p>Write five important terms or definitions from this chapter.</p></div>
+    <div><span>02</span><b>Understand</b><p>Explain the main concept in 3–5 sentences without looking at your notes.</p></div>
+    <div><span>03</span><b>Apply</b><p>Solve one question where you must use the concept rather than simply recall it.</p></div>
+   </div>
+  </section>
+
+  <section class="study-block exam-box">
+   <h2>⭐ ICSE Exam Approach</h2>
+   <p>Read the command words carefully — define, explain, distinguish, calculate, give reasons, draw, identify and justify require different styles of answers.</p>
+   <p>Present answers clearly and use working, labelled diagrams, units and relevant terminology wherever the question requires them.</p>
+  </section>
+
+  <section class="study-block">
+   <h2>🔁 5-Minute Revision</h2>
+   <ol>
+    <li>Close the notes.</li>
+    <li>Write the chapter's key ideas from memory.</li>
+    <li>Recall formulas/definitions/diagrams.</li>
+    <li>Answer one practice question.</li>
+    <li>Ask the AI Tutor about anything you still cannot explain.</li>
+   </ol>
+  </section>
+ </article>
+
+ <aside class="card chapter-side">
+  <h3>📚 Study Path</h3>
+  <div>1️⃣ Learn the concept</div>
+  <div>2️⃣ Read key points</div>
+  <div>3️⃣ Study the example method</div>
+  <div>4️⃣ Practise questions</div>
+  <div>5️⃣ Review mistakes</div>
+  <div>6️⃣ Take a chapter test</div>
+  <a class="btn ai-btn" href="{{url_for('ai_solver')}}">🤖 Ask AI Tutor</a>
+  <a class="btn secondary-btn" href="{{url_for('library', class_name=class_name)}}">📚 More Chapters</a>
+ </aside>
+</div>
 {% endblock %}
