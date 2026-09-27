@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Class 10 Board Preparation | Concept Classes{% endblock %}
+{% block content %}
+<section class="hero-panel library-hero">
+ <div><span class="eyebrow">CONCEPT CLASSES • CLASS 10 ICSE</span><h1>🎯 Board Preparation Hub</h1><p>Revise concepts, practise exam-style questions and build a strong answer-writing routine.</p></div>
+ <div class="hero-actions"><a class="btn secondary-btn" href="{{url_for('library',class_name='10')}}">📚 Concept Library</a><a class="btn ai-btn" href="{{url_for('ai_solver')}}">🤖 AI Doubt Solver</a></div>
+</section>
+<div class="card exam-roadmap">
+ <div class="section-head"><div><span class="eyebrow">BOARD ROADMAP</span><h2>Prepare in 5 Steps</h2></div></div>
+ <div class="practice-grid">
+  <div><span>01</span><b>Learn</b><p>Understand the chapter from Concept Classes notes.</p></div>
+  <div><span>02</span><b>Revise</b><p>Make a one-page revision sheet of key facts and formulas.</p></div>
+  <div><span>03</span><b>Practise</b><p>Attempt chapter and application-based questions.</p></div>
+  <div><span>04</span><b>Write</b><p>Practise timed answers with proper steps and presentation.</p></div>
+  <div><span>05</span><b>Analyse</b><p>Review mistakes and ask the AI Tutor about difficult concepts.</p></div>
+ </div>
+</div>
+<section class="library-section">
+ <div class="section-head"><div><span class="eyebrow">SUBJECT-WISE PREPARATION</span><h2>Class 10 Board Subjects</h2></div></div>
+ <div class="library-grid">
+ {% for subject, focus in subjects %}
+  <article class="library-card"><div class="chapter-number">{{loop.index}}</div><div class="library-card-body"><span class="note-badge">BOARD PREP</span><h3>{{subject}}</h3><p>{{focus}}</p><a class="text-link" href="{{url_for('library',class_name='10',q=subject)}}">Study chapters →</a></div></article>
+ {% endfor %}
+ </div>
+</section>
+<div class="card">
+ <span class="eyebrow">PYQ & PRACTICE</span>
+ <h2>Past-paper Practice</h2>
+ <p>Use authorised or officially provided CISCE papers for past-year practice. Concept Classes can keep the practice area organised by year, subject and chapter without reproducing copyrighted papers from unofficial sources.</p>
+ <div class="example-box"><b>Exam routine:</b> Start with chapter practice → move to timed subject papers → check presentation and mistakes → revise weak chapters → repeat.</div>
+</div>
+{% endblock %}
