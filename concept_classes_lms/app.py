@@ -9,6 +9,7 @@ from sqlalchemy import text
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from learning_features import register_learning_features
+from library_features import register_library
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__)
@@ -105,6 +106,7 @@ class ProctorEvent(db.Model):
 
 
 register_learning_features(app, db, User)
+register_library(app)
 
 def init_db():
     with app.app_context():
