@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
+<defs>
+ <radialGradient id="bg" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#172554"/><stop offset="1" stop-color="#020617"/></radialGradient>
+ <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#22d3ee"/><stop offset=".5" stop-color="#fbbf24"/><stop offset="1" stop-color="#2563eb"/></linearGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<circle cx="250" cy="250" r="235" fill="url(#bg)" stroke="url(#ring)" stroke-width="16"/>
+<circle cx="250" cy="250" r="205" fill="none" stroke="#38bdf8" stroke-width="3" stroke-dasharray="12 10" opacity=".9"/>
+<g filter="url(#glow)" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round">
+<path d="M210 220c-22-38 4-84 48-84s70 46 48 84c-9 16-24 27-29 47h-38c-5-20-20-31-29-47z"/>
+<path d="M238 280h24M240 300h20"/>
+</g>
+<path d="M250 160v34M199 181l24 24M301 181l-24 24M180 233h34M320 233h-34" stroke="#fde68a" stroke-width="7" stroke-linecap="round"/>
+<text x="250" y="355" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="54" font-weight="900" letter-spacing="1">CONCEPT</text>
+<text x="250" y="405" text-anchor="middle" fill="#fbbf24" font-family="Arial,sans-serif" font-size="34" font-weight="800" letter-spacing="5">CLASSES</text>
+</svg>
