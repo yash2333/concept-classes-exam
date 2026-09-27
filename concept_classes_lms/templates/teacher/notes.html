@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Manage Notes | Concept Classes{% endblock %}
+{% block content %}
+<section class="hero-panel teacher-hero">
+<div><span class="eyebrow">TEACHER RESOURCE CENTER</span><h1>Notes Library 📚</h1><p>Upload notes once and make them available to your students.</p></div>
+</section>
+<div class="grid">
+<div class="card">
+<h2>Upload New Note</h2>
+<form method="post" action="{{url_for('upload_note')}}" enctype="multipart/form-data">
+<input name="title" placeholder="Note title" required>
+<input name="subject" placeholder="Subject e.g. Mathematics" required>
+<input name="class_name" placeholder="Class e.g. 10">
+<textarea name="description" placeholder="Short description"></textarea>
+<input type="file" name="note_file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.txt,.md" required>
+<small>Maximum upload size: 20 MB.</small>
+<button class="btn">Upload Note</button>
+</form>
+</div>
+<div class="card">
+<h2>Publishing Tips</h2>
+<div class="tip-list"><div>✓ Use clear chapter names</div><div>✓ Select the correct subject</div><div>✓ Add the class so students can filter easily</div><div>✓ PDF is recommended for printable notes</div></div>
+</div>
+</div>
+<div class="card">
+<div class="section-head"><div><span class="eyebrow">YOUR LIBRARY</span><h2>Uploaded Notes</h2></div></div>
+<div class="notes-list">
+{% for n in notes %}
+<div class="note-list-row"><div class="file-icon">📄</div><div class="note-list-info"><b>{{n.title}}</b><small>{{n.subject}}{% if n.class_name %} • Class {{n.class_name}}{% endif %} • {{n.file_name}}</small></div><a class="btn small-btn" href="{{url_for('view_note',note_id=n.id)}}" target="_blank">Open</a><form method="post" action="{{url_for('delete_note',note_id=n.id)}}" onsubmit="return confirm('Delete this note?');"><button class="danger small-btn">Delete</button></form></div>
+{% else %}<div class="empty-state">No notes uploaded yet.</div>{% endfor %}
+</div>
+</div>
+{% endblock %}
