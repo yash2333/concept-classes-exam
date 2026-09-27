@@ -1,1 +1,31 @@
-{% extends 'base.html' %}{% block content %}<div class="card narrow"><h2>Login</h2><form method="post"><label>Username<input name="username" required></label><label>Password<input type="password" name="password" required></label><button class="btn">Login</button></form><p class="muted">Demo: admin/admin123 • teacher/teacher123 • student/student123</p></div>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Sign In | Concept Classes{% endblock %}
+{% block content %}
+<section class="login-page">
+  <div class="login-showcase">
+    <div class="eyebrow">SECURE LEARNING PORTAL</div>
+    <img class="login-logo" src="{{ url_for('static', filename='concept-classes-logo.svg') }}" alt="Concept Classes">
+    <h1>Learn. Practice.<br><span>Perform.</span></h1>
+    <p>One professional platform for classes, assessments, secure examinations and student progress.</p>
+    <div class="feature-pills">
+      <span>✓ Secure sessions</span><span>✓ Timed examinations</span><span>✓ Student progress</span>
+    </div>
+  </div>
+  <div class="login-card">
+    <div class="login-card-head">
+      <span class="login-icon">↗</span>
+      <div><h2>Welcome back</h2><p>Sign in to continue to your portal.</p></div>
+    </div>
+    <form method="post" autocomplete="off" novalidate>
+      <label>Username
+        <div class="input-wrap"><span>◉</span><input type="text" name="username" required autocomplete="new-username" autocapitalize="none" spellcheck="false" placeholder="Enter your username"></div>
+      </label>
+      <label>Password
+        <div class="input-wrap"><span>●</span><input type="password" name="password" required autocomplete="new-password" placeholder="Enter your password"></div>
+      </label>
+      <button class="btn login-btn" type="submit">Sign In <span>→</span></button>
+    </form>
+    <div class="secure-note"><span>🔒</span><span>Your credentials are used only to authenticate your portal session.</span></div>
+  </div>
+</section>
+{% endblock %}
