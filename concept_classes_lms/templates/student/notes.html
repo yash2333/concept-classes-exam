@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Notes | Concept Classes{% endblock %}
+{% block content %}
+<section class="hero-panel">
+  <div><span class="eyebrow">STUDY LIBRARY</span><h1>My Notes 📚</h1><p>Teacher-uploaded notes, worksheets and study material in one place.</p></div>
+</section>
+<div class="card filter-card">
+<form method="get" class="filter-form">
+<select name="subject"><option value="">All Subjects</option>{% for s in subjects %}<option value="{{s}}" {% if selected_subject==s %}selected{% endif %}>{{s}}</option>{% endfor %}</select>
+<input name="class_name" value="{{selected_class}}" placeholder="Class e.g. 10">
+<button class="btn">Filter Notes</button>
+<a class="btn secondary-btn" href="{{url_for('student_notes')}}">Clear</a>
+</form>
+</div>
+<div class="notes-grid">
+{% for n in notes %}
+<article class="note-card">
+<div class="note-top"><span class="file-icon">📄</span><span class="note-type">{{n.file_name.rsplit('.',1)[-1]|upper}}</span></div>
+<h3>{{n.title}}</h3>
+<div class="note-meta"><span>{{n.subject}}</span>{% if n.class_name %}<span>Class {{n.class_name}}</span>{% endif %}</div>
+<p>{{n.description or 'Study material uploaded by your teacher.'}}</p>
+<a class="btn" href="{{url_for('view_note',note_id=n.id)}}" target="_blank">Open Note →</a>
+</article>
+{% else %}<div class="empty-state card">No notes found for the selected filter.</div>{% endfor %}
+</div>
+{% endblock %}
